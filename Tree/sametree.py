@@ -1,3 +1,6 @@
+from operator import truediv
+
+
 class Node:
     def __init__(self,data):
         self.data=data
@@ -36,34 +39,52 @@ class BinarySearchTree:
         printTree(root.right)
         print(root.data,end="->")'''
 
-def minimumDepth(root):
-    s=[root]
+
+def Breadthfirstsearch(root):
+    q=[root]
     result=[]
-    cur_depth=[]
+    while q!=[]:
+        size=len(q)
+        for i  in range(size):
+            cur=q.pop(0)
+            result.append(cur.data)
+            if cur.left:
+                q.append(cur.left)
+            else:
+                result.append("Null")
+            if cur.right:
+                q.append(cur.right)
+            result.append("Null")
 
-    while s!=[]:
-        
-        x=s.pop()
-        cur_depth.append(x.data)
-        if x.right:
-            s.append(x.right)
-        if x.left:
-            s.append(x.left)
-
-        if x.left==None and x.right==None:
-            result.append(cur_depth)
-            cur_depth=[]
-        
     return result
 
+def SameTree(tree1,tree2):
+    if tree1==tree2:
+        return True
+    else:
+        return False
 
 tree=BinarySearchTree()
-tree.insert(8)
-tree.insert(3)
+tree1=BinarySearchTree()
+
 tree.insert(1)
-tree.insert(6)
-tree.insert(4)
-tree.insert(7)
-tree.insert(10)
-tree.insert(14)
-print(minimumDepth(tree.root))
+tree.insert(2)
+# tree.insert(1)
+# tree.insert(6)
+# tree.insert(4)
+# tree.insert(7)
+# tree.insert(10)
+# tree.insert(14)
+
+tree1.insert(1)
+# tree1.insert()
+tree1.insert(2)
+# tree1.insert(6)
+# tree1.insert(4)
+# tree1.insert(7)
+# tree1.insert(10)
+# tree1.insert(14)
+
+x=Breadthfirstsearch(tree.root)
+y=Breadthfirstsearch(tree1.root)
+print(SameTree(x,y))

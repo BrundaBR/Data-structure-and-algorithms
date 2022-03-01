@@ -36,8 +36,15 @@ class BinarySearchTree:
         printTree(root.right)
         print(root.data,end="->")''' 
 
-def function(root):
-    pass
+def heightoftree(root):
+    if root==None:
+        return 0
+    #recursive call
+    left=heightoftree(root.left)
+    right=heightoftree(root.right)
+
+    #return 
+    return min(left,right)+1
 
 
 
@@ -50,3 +57,4 @@ tree.insert(4)
 tree.insert(7)
 tree.insert(10)
 tree.insert(14)
+print(heightoftree(tree.root))
